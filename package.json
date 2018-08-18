@@ -24,6 +24,7 @@
   "dependencies": {
     "joi": "^13.6.0",
     "joi-to-json-schema": "^3.3.0",
+    "jsonschema": "^1.2.4",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",

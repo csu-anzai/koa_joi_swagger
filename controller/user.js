@@ -1,14 +1,15 @@
-// const User = require('../models/user')
-// const BaseController = require('../common/base_controller')
+const User = require('../models/user')
+const BaseController = require('../common/base_controller')
 const service = require('../services/user')
 
-class UserController {
+class UserController extends BaseController {
   async index (ctx) {
     const params = ctx.query
     ctx.body = await service.index(params)
   }
   async create (ctx) {
     const params = ctx.request.body
+    await super.validate(User.schema, User.create, params, ctx)
     ctx.body = await service.create(params)
   }
   async show (ctx) {
