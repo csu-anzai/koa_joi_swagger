@@ -1,0 +1,24 @@
+{
+  "name": "koa_joi_swagger",
+  "version": "1.0.0",
+  "description": "koa joi swagger",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alfieri-Jun-teams/koa_joi_swagger.git"
+  },
+  "keywords": [
+    "koa",
+    "joi",
+    "swagger"
+  ],
+  "author": "AlfieriChou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alfieri-Jun-teams/koa_joi_swagger/issues"
+  },
+  "homepage": "https://github.com/Alfieri-Jun-teams/koa_joi_swagger#readme"
+}
