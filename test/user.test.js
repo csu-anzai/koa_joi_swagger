@@ -5,19 +5,14 @@ const describe = require('mocha').describe
 const it = require('mocha').it
 
 describe('GET /users!!!', () => {
-  let response
   it('response get /users result!!', () => {
     request(server)
       .get('/users')
       .set('Accept', 'application/json')
       .expect(200)
       .then(res => {
-        response = res.body
+        should(res.body).be.String
       })
-  })
-
-  it('response mast be String!!', () => {
-    should(response).be.String
   })
 })
 
@@ -52,6 +47,43 @@ describe('POST /users!!!', () => {
       .expect(422)
       .then(response => {
         should(response.error.text).match('requires property "phone"')
+      })
+  })
+})
+
+describe('GET /users/:id!!!', () => {
+  it('response success!!', () => {
+    request(server)
+      .get('/users/1')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .then(res => {
+        should(res.body).be.String
+      })
+  })
+})
+
+describe('UPDATE /users/:id!!!', () => {
+  it('response success!!', () => {
+    request(server)
+      .put('/users/1')
+      .send({password: 'asdxzas123'})
+      .set('Accept', 'application/json')
+      .expect(200)
+      .then(res => {
+        should(res.body).be.String
+      })
+  })
+})
+
+describe('DELETE /users/:id!!!', () => {
+  it('response success!!', () => {
+    request(server)
+      .delete('/users/1')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .then(res => {
+        should(res.body).be.String
       })
   })
 })
