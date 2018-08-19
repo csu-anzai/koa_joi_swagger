@@ -20,6 +20,6 @@ class UserService {
     return 'Hello'
   }
 }
-  
+
 const user = new UserService()
 module.exports = user

@@ -1,11 +1,11 @@
 /********
   Written By AlfieriChou
 *********/
-const bodyParser =require('koa-bodyparser')
-const Koa =require('koa')
-const logger =require('koa-logger')
-const koabody =require('koa-body')
-const index =require('./routes/index')
+const bodyParser = require('koa-bodyparser')
+const Koa = require('koa')
+const logger = require('koa-logger')
+const koabody = require('koa-body')
+const index = require('./routes/index')
 
 const app = new Koa()
 

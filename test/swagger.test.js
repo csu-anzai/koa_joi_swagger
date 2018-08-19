@@ -1,6 +1,8 @@
 const request = require('supertest')
 const should = require('should')
 const server = require('./index')
+const describe = require('mocha').describe
+const it = require('mocha').it
 
 let swagger
 
