@@ -11,8 +11,6 @@ class BaseController {
       const result = await v.validate(json, jsonSchema)
       if (result.errors[0]) {
         ctx.throw(422, result.errors[0].message)
-      } else {
-        next()
       }
     }
   }
