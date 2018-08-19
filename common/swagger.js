@@ -9,6 +9,7 @@ const generateSwagger = (modelPath = './models') => {
   let methods = []
   let components = {}
   components.schemas = {}
+  // const parameters = {}
   items.forEach(item => {
     let model = require('../models/' + item)
     item = item.replace(/\.\w+$/, '')
@@ -29,6 +30,7 @@ const generateSwagger = (modelPath = './models') => {
           description: model[index].description
         }
 
+        // content.parameters = []
         if (model[index].query) {
           content.parameters = []
           let params = convert(Joi.object(model[index].query))
@@ -36,7 +38,7 @@ const generateSwagger = (modelPath = './models') => {
             let field = {}
             field.name = prop
             field.in = 'query'
-            field.description = model[index].summary
+            field.description = params.properties[prop].description
             field.schema = {
               'type': params.properties[prop].type
             }
@@ -52,7 +54,7 @@ const generateSwagger = (modelPath = './models') => {
             let field = {}
             field.name = prop
             field.in = 'path'
-            field.description = model[index].summary
+            field.description = params.properties[prop].description
             field.schema = {
               'type': params.properties[prop].type
             }
@@ -61,19 +63,19 @@ const generateSwagger = (modelPath = './models') => {
           }
         }
 
-        // if (model[index].headers) {
-        //   content.parameters = []
-        //   let params = convert(Joi.object(model[index].headers))
+        // if (model[index].header) {
+        //   let params = convert(Joi.object(model[index].header))
         //   for (let prop in params.properties) {
         //     let field = {}
         //     field.name = prop
         //     field.in = 'header'
-        //     field.description = model[index].summary
+        //     field.description = params.properties[prop].description
         //     field.items = {
         //       'type': params.properties[prop].type
         //     }
         //     field.required = true
-        //     content.parameters.push(field)
+        //     parameters[prop] = field
+        //     content.parameters.push({'$ref': `#/parameters/${prop}`})
         //   }
         // }
 
@@ -131,6 +133,7 @@ const generateSwagger = (modelPath = './models') => {
   }
   swagger.paths = mergeMethod
   swagger.components = components
+  // swagger.parameters = parameters
   return swagger
 }
 
