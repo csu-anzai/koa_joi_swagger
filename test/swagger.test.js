@@ -28,3 +28,15 @@ describe('test swagger', () => {
     should(swagger).have.property('openapi', '3.0.0')
   })
 })
+
+describe('GET /apidoc!!!', function () {
+  it('respond with json', function () {
+    request(server)
+      .get('/apidoc')
+      .set('Accept', 'text/html')
+      .expect(200)
+      .then(response => {
+        should(response.body).be.html
+      })
+  })
+})

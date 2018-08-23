@@ -10,5 +10,6 @@ api.put('/users/:id', user.update)
 api.delete('/users/:id', user.destroy)
 
 api.get('/swagger.json', swagger.doc)
+api.get('/apidoc', swagger.index)
 
 module.exports = api
