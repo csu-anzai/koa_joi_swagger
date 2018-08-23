@@ -16,7 +16,7 @@ module.exports = {
     method: 'get',
     tags: ['users'],
     summary: '获取用户列表',
-    query: _.pick(props, ['phone', 'password']),
+    query: _.pick(props, ['phone']),
     output: Joi.array().items(props).description('返回列表查询')
   },
   create: {
