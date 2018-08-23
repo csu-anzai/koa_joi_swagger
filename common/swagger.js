@@ -97,13 +97,26 @@ const generateSwagger = (modelPath = './models') => {
           content.requestBody = request.requestBody
         }
 
-        content.responses = {
-          200: {
-            'description': 'response success',
-            'content': {
-              'application/json': {
-                'schema': {
-                  $ref: `#/components/schemas/${schemaName}`
+        if (model[index].output) {
+          content.responses = {
+            200: {
+              'description': 'response success',
+              'content': {
+                'application/json': {
+                  'schema': convert(model[index].output)
+                }
+              }
+            }
+          }
+        } else {
+          content.responses = {
+            200: {
+              'description': 'response success',
+              'content': {
+                'application/json': {
+                  'schema': {
+                    $ref: `#/components/schemas/${schemaName}`
+                  }
                 }
               }
             }
