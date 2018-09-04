@@ -7,3 +7,5 @@ ADD . /app/koa_joi_swagger
 RUN cd /app/koa_joi_swagger && npm install
 
 EXPOSE 4000
+
+CMD npm start
