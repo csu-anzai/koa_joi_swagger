@@ -5,7 +5,7 @@ const _ = require('lodash')
 
 const generateSwagger = (modelPath = './app/models') => {
   // TODO 未考虑文件夹下嵌套文件夹
-  let items = fs.readdirSync(modelPath)
+  const items = fs.readdirSync(modelPath)
   _.remove(items, (n) => {
     return n === 'index.js'
   })
