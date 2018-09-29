@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/Alfieri-Jun-teams/koa_joi_swagger#readme",
   "dependencies": {
+    "app-root-path": "^2.1.0",
+    "dir_filenames": "^1.0.6",
     "joi": "^13.6.0",
     "joi-to-json-schema": "^3.3.0",
     "jsonschema": "^1.2.4",
