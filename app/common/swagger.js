@@ -4,7 +4,7 @@ const _ = require('lodash')
 const appRoot = require('app-root-path')
 const dir = require('dir_filenames')
 
-const generateSwagger = () => {
+const generateSwagger = (info) => {
   const items = dir(`${appRoot}/app/models`)
   _.remove(items, (n) => {
     return n === `${appRoot}/app/models/index.js`
@@ -128,20 +128,7 @@ const generateSwagger = () => {
 
   let swagger = {}
   swagger.openapi = '3.0.0'
-  swagger.info = {
-    'title': 'Demo API document',
-    'version': 'v3',
-    'description': 'Using swagger3.0 & joi to generate swagger.json',
-    'contact': {
-      'name': 'AlfieriChou',
-      'email': 'alfierichou@gmail.com',
-      'url': 'https://alfierichou.com'
-    },
-    'license': {
-      'name': 'MIT',
-      'url': 'https://github.com/Alfieri-Jun-teams/koa_joi_swagger/blob/master/LICENSE'
-    }
-  }
+  swagger.info = info
   swagger.paths = mergeMethod
   swagger.components = components
   return swagger
