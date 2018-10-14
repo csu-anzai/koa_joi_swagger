@@ -7,6 +7,7 @@ const logger = require('koa-logger')
 const koabody = require('koa-body')
 const views = require('koa-views')
 const index = require('./app/routes/index')
+const path = require('path')
 
 const app = new Koa()
 
@@ -24,7 +25,7 @@ app.use(async (ctx, next) => {
 
 app
   .use(logger())
-  .use(views(__dirname + '/views', {map: {html: 'nunjucks'}}))
+  .use(views(path.join('./views'), {map: {html: 'nunjucks'}}))
   .use(koabody({}))
   .use(index.middleware())
   .use(bodyParser())
