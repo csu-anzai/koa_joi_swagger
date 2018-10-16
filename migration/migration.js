@@ -3,13 +3,46 @@ const path = require('path')
 const _ = require('lodash')
 global.Promise = require('bluebird')
 const db = require('./index')
+const appRoot = require('app-root-path')
 
 let tasks = []
-fs.readdirSync(path.join('./operation')).map(file => {
-  let migrations = require(path.join(__dirname, file))(db)
+fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
+  let migrations = require(path.join(`${appRoot}/migration/operation`, file))(db)
   let funcArray = []
+  console.log('------->', migrations)
   migrations.map(migration => {
-    // knex不能定义model 正在考虑最优方案
+    if (_.isPlainObject && migration.opt === 'create') {
+      return funcArray.push(async () => {
+        const exists = await db.schema.hasTable(migration.table)
+        if (!exists) {
+          return db.schema.createTable(migration.table, t => {
+            for (let i in migration.column) {
+              let columns = migration.column
+              if (i === 'id') {
+                t[columns[i].type]()
+              } else {
+                let column = columns[i].length ? t[columns[i].type](migration.field, columns[i].length) : t[columns[i].type](migration.field)
+                if (columns[i].default) column.defaultTo(columns[i].default)
+                if (columns[i].comment) column.comment(columns[i].comment)
+              }
+            }
+          })
+        }
+      })
+    }
+    if (_.isPlainObject && migration.opt === 'addColumn') {
+      return funcArray.push(async () => {
+        const exists = await db.schema.hasColumn(migration.table, migration.field)
+        if (!exists) {
+          return db.schema.table(migration.table, t => {
+            let column = migration['content'].length ? t[migration['content'].type](migration.field, migration['content'].length) : t[migration['content'].type](migration.field)
+            if (migration['content'].default) column.defaultTo(migration['content'].default)
+            if (migration['content'].comment) column.comment(migration['content'].comment)
+            if (migration['content'].after) column.after(migration['content'].after)
+          })
+        }
+      })
+    }
   })
   tasks = _.union(tasks, migrations)
 })

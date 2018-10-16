@@ -3,9 +3,9 @@ const config = {
   client: 'mysql',
   connection: {
     host: '106.15.230.136',
-    user: 'teskboom',
-    password: 'teskboom@2018',
-    database: 'teskboom_db',
+    user: 'lvyang',
+    password: 'zhazhayang',
+    database: 'test',
     supportBigNumbers: true,
     charset: 'utf8mb4',
     connectTimeout: 15000
