@@ -20,7 +20,11 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
               if (i === 'id') {
                 t[columns[i].type]()
               } else {
-                columns[i].length ? t[columns[i].type](i, columns[i].length).comment(columns[i].comment) : t[columns[i].type](i).comment(columns[i].comment)
+                if (columns[i].length) {
+                  t[columns[i].type](i, columns[i].length).defaultTo(columns[i].default).comment(columns[i].comment)
+                } else {
+                  t[columns[i].type](i).defaultTo(columns[i].default).comment(columns[i].comment)
+                }
               }
             }
           })
