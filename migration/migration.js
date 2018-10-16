@@ -44,6 +44,11 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
         }
       })
     }
+    if (_.isPlainObject && migration.opt === 'query') {
+      return funcArray.push(async () => {
+        return db.schema.raw(migration.sql)
+      })
+    }
   })
   tasks = _.union(tasks, funcArray)
 })

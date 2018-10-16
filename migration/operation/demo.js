@@ -22,5 +22,9 @@ module.exports = (knex) => {
         after: 'user_name'
       }
     }
+    // {
+    //   opt: 'query',
+    //   sql: 'ALTER TABLE user_name CHANGE name name INT;'
+    // }
   ]
 }
