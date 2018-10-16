@@ -9,7 +9,6 @@ let tasks = []
 fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
   let migrations = require(path.join(`${appRoot}/migration/operation`, file))(db)
   let funcArray = []
-  console.log('------->', migrations)
   migrations.map(migration => {
     if (_.isPlainObject && migration.opt === 'create') {
       return funcArray.push(async () => {
@@ -21,9 +20,7 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
               if (i === 'id') {
                 t[columns[i].type]()
               } else {
-                let column = columns[i].length ? t[columns[i].type](migration.field, columns[i].length) : t[columns[i].type](migration.field)
-                if (columns[i].default) column.defaultTo(columns[i].default)
-                if (columns[i].comment) column.comment(columns[i].comment)
+                columns[i].length ? t[columns[i].type](i, columns[i].length).comment(columns[i].comment) : t[columns[i].type](i).comment(columns[i].comment)
               }
             }
           })
@@ -44,7 +41,7 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
       })
     }
   })
-  tasks = _.union(tasks, migrations)
+  tasks = _.union(tasks, funcArray)
 })
 
 Promise

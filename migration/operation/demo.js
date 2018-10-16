@@ -19,7 +19,7 @@ module.exports = (knex) => {
         type: 'string',
         length: '64',
         comment: '真实姓名',
-        after: 'username'
+        after: 'user_name'
       }
     }
   ]
