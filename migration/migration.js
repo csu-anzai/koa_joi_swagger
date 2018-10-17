@@ -53,6 +53,14 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
         }
       })
     }
+    if (_.isPlainObject && migration.opt === 'dropColumn') {
+      return funcArray.push(async () => {
+        const exists = await db.schema.hasColumn(migration.table, migration.field)
+        if (!exists) {
+          return db.schema.table(migration.table, t => t.dropColumn(migration.field))
+        }
+      })
+    }
     if (_.isPlainObject && migration.opt === 'renameTable') {
       return funcArray.push(async () => {
         const exists = await db.schema.hasTable(migration.from_table)
