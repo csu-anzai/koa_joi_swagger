@@ -20,7 +20,9 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
               if (i === 'id') {
                 t[columns[i].type]()
               } else {
-                if (columns[i].length) {
+                if (columns[i].type === 'float' || columns[i] === 'double' || columns[i].type === 'decimal') {
+                  t[columns[i].type](i, columns[i].precision, columns[i].scale).defaultTo(columns[i].default).comment(columns[i].comment)
+                } else if (columns[i].type === 'string' || columns[i].type === 'varchar' || columns[i].type === 'char') {
                   t[columns[i].type](i, columns[i].length).defaultTo(columns[i].default).comment(columns[i].comment)
                 } else {
                   t[columns[i].type](i).defaultTo(columns[i].default).comment(columns[i].comment)

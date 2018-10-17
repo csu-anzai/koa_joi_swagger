@@ -6,6 +6,7 @@ module.exports = (knex) => {
       column: {
         id: {type: 'increments'},
         user_name: {type: 'string', length: '32', comment: '用户名'},
+        age: {type: 'float', precision: 3, scale: 0, comment: '年龄'},
         created_at: {type: 'timestamp', comment: '创建时间'},
         updated_at: {type: 'datetime', comment: '更新时间'},
         deleted_at: {type: 'datetime', comment: '删除时间'}
