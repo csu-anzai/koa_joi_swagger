@@ -8,7 +8,11 @@
     "dev": "NODE_ENV=development nodemon server.js",
     "release": "NODE_ENV=release nodemon server.js",
     "db:migrate": "node ./migration/migration.js",
+    "db:migrate:prod": "node ./migration/migration.js prod",
+    "db:migrate:release": "node ./migration/migration.js release",
     "db:drop": "node ./migration/drop.js",
+    "db:drop:prod": "node ./migration/drop.js prod",
+    "db:drop:release": "node ./migration/drop.js release",
     "lint": "standard --fix",
     "test": "nyc mocha --exit",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
