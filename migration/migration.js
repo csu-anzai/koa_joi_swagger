@@ -38,7 +38,14 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
         const exists = await db.schema.hasColumn(migration.table, migration.field)
         if (!exists) {
           return db.schema.table(migration.table, t => {
-            let column = migration['content'].length ? t[migration['content'].type](migration.field, migration['content'].length) : t[migration['content'].type](migration.field)
+            let column
+            if (migration['content'].type === 'string' || migration['content'].type === 'varchar' || migration['content'].type === 'char') {
+              column = t[migration['content'].type](migration.field, migration['content'].length)
+            } else if (migration['content'].type === 'float' || migration['content'].type === 'double' || migration['content'].type === 'decimal') {
+              column = t[migration['content'].type](migration.field, migration['content'].precision, migration['content'].scale)
+            } else {
+              column = t[migration['content'].type](migration.field)
+            }
             if (migration['content'].default) column.defaultTo(migration['content'].default)
             if (migration['content'].comment) column.comment(migration['content'].comment)
             if (migration['content'].after) column.after(migration['content'].after)
