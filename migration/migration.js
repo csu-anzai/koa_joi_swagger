@@ -77,7 +77,7 @@ fs.readdirSync(`${appRoot}/migration/operation`).map(file => {
         }
       })
     }
-    if (_.isPlainObject && migration.opt === 'query') {
+    if (_.isPlainObject && migration.opt === 'raw') {
       return funcArray.push(async () => {
         return db.schema.raw(migration.sql)
       })

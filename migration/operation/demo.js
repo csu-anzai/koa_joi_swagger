@@ -1,4 +1,4 @@
-module.exports = (knex) => {
+module.exports = () => {
   return [
     {
       opt: 'create',
