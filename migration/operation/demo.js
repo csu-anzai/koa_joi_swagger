@@ -22,6 +22,11 @@ module.exports = (knex) => {
         comment: '真实姓名',
         after: 'user_name'
       }
+    },
+    {
+      opt: 'renameTable',
+      from_table: 'user',
+      to_table: 'old_users'
     }
     // {
     //   opt: 'query',
