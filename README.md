@@ -3,7 +3,12 @@ joi swagger
 
 [![Build Status][travis-image]][travis-url]
 [![codecov][codecov-image]][codecov-url]
-[![Dependency Status][daviddm-image]][daviddm-url]
+[![Dependency Status][daviddm-image]]
+[daviddm-url]
+
+
+[![standard][standard-image]][standard-url]
+
 ### model
 
 #### props
@@ -85,3 +90,5 @@ update: {
 [codecov-url]: https://codecov.io/gh/Alfieri-Jun-teams/koa_joi_swagger
 [daviddm-image]: https://david-dm.org/Alfieri-Jun-teams/koa_joi_swagger.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/Alfieri-Jun-teams/koa_joi_swagger
+[standard-image]: https://cdn.rawgit.com/standard/standard/master/badge.svg
+[standard-url]: https://github.com/standard/standard
