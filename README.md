@@ -4,6 +4,7 @@ joi swagger
 [![Build Status][travis-image]][travis-url]
 [![codecov][codecov-image]][codecov-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
+[![license][license-image]][license-url]
 
 [![standard][standard-image]][standard-url]
 
@@ -87,6 +88,8 @@ update: {
 [codecov-image]: https://codecov.io/gh/Alfieri-Jun-teams/koa_joi_swagger/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/Alfieri-Jun-teams/koa_joi_swagger
 [daviddm-image]: https://david-dm.org/Alfieri-Jun-teams/koa_joi_swagger.svg?theme=shields.io
+[license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
+[license-url]: https://opensource.org/licenses/MIT
 [daviddm-url]: https://david-dm.org/Alfieri-Jun-teams/koa_joi_swagger
 [standard-image]: https://cdn.rawgit.com/standard/standard/master/badge.svg
 [standard-url]: https://github.com/standard/standard
