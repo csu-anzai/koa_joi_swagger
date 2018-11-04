@@ -3,8 +3,8 @@ const Validator = require('jsonschema').Validator
 const v = new Validator()
 
 class BaseController {
-  async validate (schema, model, json, ctx, next, options) {
-    const jsonSchema = convert(schema)
+  async validate (model, json, ctx) {
+    const jsonSchema = convert(model.requestBody.body)
     if (model.requestBody) {
       const required = model.requestBody.required
       jsonSchema.required = required
