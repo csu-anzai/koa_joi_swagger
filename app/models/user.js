@@ -17,7 +17,11 @@ module.exports = {
     tags: ['users'],
     summary: '获取用户列表',
     query: _.pick(props, ['phone']),
-    output: Joi.array().items(props).description('返回列表查询')
+    output: {
+      200: Joi.object().keys({
+        result: Joi.array().items(props).description('返回列表查询')
+      })
+    }
   },
   create: {
     path: '/users',
@@ -34,10 +38,7 @@ module.exports = {
     method: 'get',
     tags: ['users'],
     summary: '获取用户详情',
-    params: _.pick(props, ['id']),
-    header: {
-      x_access_token: Joi.string().description('token')
-    }
+    params: _.pick(props, ['id'])
   },
   update: {
     path: '/users/{id}',
