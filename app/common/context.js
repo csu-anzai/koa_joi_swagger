@@ -1,4 +1,4 @@
-const ISADMIN = Symbol('context#isAdmin')
+const ISADMIN = Symbol('Context#isAdmin')
 
 module.exports = {
   isAdmin: {
