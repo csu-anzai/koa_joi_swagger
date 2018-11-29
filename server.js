@@ -6,10 +6,9 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const koabody = require('koa-body')
 const views = require('koa-views')
-const index = require('./app/routes/index')
 const path = require('path')
 const config = require('./config')
-const context = require('./app/common/context')
+const appModule = require('./app')
 
 const app = new Koa()
 
@@ -25,16 +24,16 @@ app.use(async (ctx, next) => {
   await next()
 })
 
-const keys = Object.keys(context)
+const keys = Object.keys(appModule.context)
 keys.map(key => {
-  Object.defineProperty(app.context, key, context[key])
+  Object.defineProperty(app.context, key, appModule.context[key])
 })
 
 app
   .use(logger())
   .use(views(path.join('./views'), {map: {html: 'nunjucks'}}))
   .use(koabody({}))
-  .use(index.middleware())
+  .use(appModule.router.middleware())
   .use(bodyParser())
 
 if (!module.parent) {
