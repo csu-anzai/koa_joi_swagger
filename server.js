@@ -21,7 +21,16 @@ app.use(async (ctx, next) => {
   ctx.set('Access-Control-Max-Age', 86400000)
   ctx.set('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE')
   ctx.set('Access-Control-Allow-Headers', 'x-requested-with, accept, origin, content-type')
-  await next()
+  try {
+    await next()
+  } catch (err) {
+    ctx.status = err.statusCode || err.status || 500
+    ctx.body = {
+      code: ctx.status,
+      message: err.message,
+      stack: err.stack
+    }
+  }
 })
 
 const keys = Object.keys(appModule.context)

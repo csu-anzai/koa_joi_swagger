@@ -9,7 +9,8 @@ class UserController extends BaseController {
   }
   async create (ctx) {
     const params = ctx.request.body
-    await super.validate(model.user.create, params, ctx)
+    await super.validate(model.user.create, params)
+    console.log('------>', this)
     ctx.body = await service.user.create(params)
   }
   async show (ctx) {
