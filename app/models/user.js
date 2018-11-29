@@ -31,6 +31,9 @@ module.exports = {
     requestBody: {
       body: _.pick(props, ['phone', 'password']),
       required: ['phone', 'password']
+    },
+    output: {
+      200: Joi.object().keys(props).description('返回结果')
     }
   },
   show: {
@@ -38,7 +41,10 @@ module.exports = {
     method: 'get',
     tags: ['users'],
     summary: '获取用户详情',
-    params: _.pick(props, ['id'])
+    params: _.pick(props, ['id']),
+    output: {
+      200: Joi.object().keys(props).description('返回结果')
+    }
   },
   update: {
     path: '/users/{id}',

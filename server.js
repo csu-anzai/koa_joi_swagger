@@ -9,6 +9,7 @@ const views = require('koa-views')
 const index = require('./app/routes/index')
 const path = require('path')
 const config = require('./config')
+const context = require('./app/common/context')
 
 const app = new Koa()
 
@@ -22,6 +23,11 @@ app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE')
   ctx.set('Access-Control-Allow-Headers', 'x-requested-with, accept, origin, content-type')
   await next()
+})
+
+const keys = Object.keys(context)
+keys.map(key => {
+  Object.defineProperty(app.context, key, context[key])
 })
 
 app
