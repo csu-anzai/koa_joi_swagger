@@ -3,7 +3,7 @@ const path = require('path')
 const _ = require('lodash')
 global.Promise = require('bluebird')
 const db = require('./index')
-const appRoot = require('../../config').appRoot
+const appRoot = require('../config').appRoot
 
 let tasks = []
 fs.readdirSync(`${appRoot}/migration/operation`).map(file => {

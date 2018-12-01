@@ -1,4 +1,4 @@
-const appRoot = require('../../config').appRoot
+const appRoot = require('../config').appRoot
 
 const files = [
   {
