@@ -1,4 +1,4 @@
-const appRoot = require('app-root-path')
+const appRoot = process.env.PWD
 
 const files = [
   {
