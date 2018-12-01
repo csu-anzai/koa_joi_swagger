@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const appRoot = process.env.PWD
+const appRoot = require('../../config').appRoot
 const dir = path.resolve(`${appRoot}/app/services/`)
 fs.readdirSync(dir).forEach(file => {
   if (file.match(/\.js$/) !== null && file !== 'index.js') {

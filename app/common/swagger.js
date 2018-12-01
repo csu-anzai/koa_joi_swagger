@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const convert = require('joi-to-json-schema')
 const _ = require('lodash')
-const appRoot = process.env.PWD
+const appRoot = require('../../config').appRoot
 const dir = require('dir_filenames')
 
 const generateSwagger = (info) => {

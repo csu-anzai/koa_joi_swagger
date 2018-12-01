@@ -10,7 +10,8 @@ const configs = {
   release: release
 }
 const defaultConfig = {
-  env: env
+  env: env,
+  appRoot: process.env.PWD
 }
 const config = _.merge(defaultConfig, configs[env])
 
