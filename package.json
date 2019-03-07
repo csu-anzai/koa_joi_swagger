@@ -35,7 +35,7 @@
   "dependencies": {
     "dir_filenames": "^1.0.6",
     "joi": "^14.3.0",
-    "joi-to-json-schema": "^3.3.0",
+    "joi-to-json-schema": "^4.0.1",
     "jsonschema": "^1.2.4",
     "knex": "^0.16.1",
     "koa": "^2.5.2",
